@@ -9,6 +9,17 @@
     align-items: center;
 }
 
+.navbar-center {
+    color: main.$black-color;
+    width: auto;
+    min-width: 25rem;
+    max-width: 40rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: larger;
+}
+
 .navbar-front {
   width: 10rem;
   display: flex;
