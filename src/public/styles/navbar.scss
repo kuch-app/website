@@ -1,0 +1,24 @@
+@use 'main';
+
+.navbar {
+    color: #E9EAFE;
+    height: 4rem;
+    background-color: main.$white-color;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-front {
+  width: 10rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.navbar-end {
+  width: 30rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
