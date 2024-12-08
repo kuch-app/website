@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { TOTP } from 'totp-generator';
 import Cookies from 'js-cookie';
-import Navbar from "./navbar";
-import "../../public/styles.css";
-import "../../public/web.css";
+
+import "./public/styles/web.css"
+
+import Navbar from './components/Navbar';
 
 const Web = () => {
     const navigateToMain = () => {
@@ -60,9 +61,9 @@ const Web = () => {
     return (
         <div>
             <Navbar/>
-            <div className="App container mt-5">
+            <div className="">
      
-      <div className='input-section'>
+      <div className="input">
         <div>
           <input
             type="text"
@@ -88,12 +89,13 @@ const Web = () => {
       </div>
 
       <div className='codes-section'>
-        <h2>Az ön kódjai :</h2>
+        <h2>Az Ön kódjai :</h2>
         {codes.length > 0 ? (
           <ul>
             {codes.map((code, index) => (
               <li key={index}>
-                <p className='code-text'>{code.name} - <strong>{code.otp}</strong></p>
+                <p className='code-text'>{code.name} : </p> 
+                <p className='code'>{code.otp}</p>
                 <button
                   onClick={() => deleteCode(code.name)}
                 >

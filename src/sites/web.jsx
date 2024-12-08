@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Web from './components/Web';
+import ReactDOM from 'react-dom/client';
+import Web from '../Web.jsx';
 
-ReactDOM.render(<Web />, document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<Web />);
