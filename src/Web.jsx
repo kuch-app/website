@@ -78,9 +78,15 @@ function App() {
         }
     }, []);
 
+    const [visible, setVisible] = useState(true);
     return (
         <div>
             <Navbar/>
+            <div className="toast toast-error" style={{ display: visible ? 'block' : 'none' }}>
+            <button className="btn btn-clear float-right" 
+            onClick={() => setVisible(false)}></button>
+            Fontos! Ha törli a böngészési adatokat (például a sütiket és a gyorsítótárat), a mentett kódjai is elvesznek.
+            </div>
             <div className="webapp">
                 <div className="input-fields">
                     <div>
