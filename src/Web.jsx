@@ -2,6 +2,7 @@ import { TOTP } from 'totp-generator';
 import Cookies from 'js-cookie';
 import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import "./public/styles/web.css"
 
 function App() {
@@ -137,7 +138,15 @@ function App() {
                             ))}
                         </ul>
                     ) : (
-                        <h3>Nincs mentett kód!</h3>
+                        <div class="empty">
+                          <div class="empty-icon">
+                            <i class="icon icon-people icon-2x"></i>
+                          </div>
+                          <p class="empty-title h5">Önnek nincsenek kódjai!</p>
+                          <p class="empty-subtitle">A fenti felületen adhat hozzá kódokat.</p>
+                          <div class="empty-action">
+                          </div>
+                        </div>
                     )}
                 </div>
             </div>
@@ -185,6 +194,7 @@ function App() {
                     </div>
                 </div>
             )}
+            <Footer></Footer>
         </div>
     );
 }
