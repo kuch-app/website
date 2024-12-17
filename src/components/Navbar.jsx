@@ -8,7 +8,7 @@ const navigateToWeb = () => {
 const Navbar = () => (
     <div className="navbar bg-secondary">
         <div className="navbar-front">
-        <a href="/">
+        <a href="/website/">
             <h1>KUCH</h1>
         </a>
         </div>
