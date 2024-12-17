@@ -7,8 +7,8 @@ const Mobile = () => (
         <div className="text-cont">
             <h2>Hamorosan mobilon is!</h2>
             <p className="text-mobile">
-                Hamarosan telefonon is előrhető lesz, az egyetlen magyar TOTP azonosító alkalmazás!
-                Az alkalmazást úgy fejlesztjük, hogy minnél jobban figyelmbe vegyük az Ön igényeit és könnyen tudja használni.
+            Hamarosan telefonon is elérhető lesz a Kuch, Magyarország egyetlen TOTP-azonosító alkalmazása!
+            Az alkalmazást kifejezetten úgy fejlesztjük, hogy biztonságos, megbízható és könnyen használható legyen mindenki számára. Az idősebb felhasználók igényeire is odafigyelünk, hogy Ön gond nélkül, egyszerűen kezelhesse.
             </p>
             <div className="button-cont">
                 <button className="btn disabled"><i class="icon icon-download"/>Android</button>
