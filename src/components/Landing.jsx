@@ -3,7 +3,7 @@ import illSvg from "../public/assets/mockup.png";
 import "../public/styles/landing.css"
 
 const navigateToWeb = () => {
-    window.location.href = '/web.html';
+    window.location.href = '/website/web.html';
 };
 
 const Landing = () => (

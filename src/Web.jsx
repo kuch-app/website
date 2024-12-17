@@ -1,18 +1,17 @@
-import React, { useState, useEffect } from 'react';
 import { TOTP } from 'totp-generator';
 import Cookies from 'js-cookie';
-
-
+import { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
+import "./public/styles/web.css"
 
-const Web = () => {
-    const navigateToMain = () => {
-        window.location.href = '/';
-    };
-
+function App() {
     const [secretKey, setSecretKey] = useState('');
     const [codeName, setCodeName] = useState('');
     const [codes, setCodes] = useState([]);
+    const [isDeleteModalActive, setIsDeleteModalActive] = useState(false);
+    const [isSettingsModalActive, setIsSettingsModalActive] = useState(false);
+    const [codeToDelete, setCodeToDelete] = useState(null);
+    const [codeForSettings, setCodeForSettings] = useState(null);
 
     const generateOtp = (key) => {
         const { otp } = TOTP.generate(key);
@@ -21,13 +20,12 @@ const Web = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-        setCodes(prevCodes => {
-            // Generate new OTPs for all codes
-            return prevCodes.map(code => ({
-                ...code,
-                otp: generateOtp(code.secretKey)
-                }));
-            });
+            setCodes(prevCodes =>
+                prevCodes.map(code => ({
+                    ...code,
+                    otp: generateOtp(code.secretKey),
+                }))
+            );
         }, 1000);
 
         return () => clearInterval(interval);
@@ -43,10 +41,34 @@ const Web = () => {
         setCodeName(''); // Reset the code name input
     };
 
-    const deleteCode = (nameToDelete) => {
-        const updatedCodes = codes.filter(code => code.name !== nameToDelete);
-        Cookies.set('codes', JSON.stringify(updatedCodes), { expires: 7 });
-        setCodes(updatedCodes); // Update state to reflect the deleted code
+    const openDeleteModal = (code) => {
+        setCodeToDelete(code);
+        setIsDeleteModalActive(true);
+    };
+
+    const confirmDelete = () => {
+        if (codeToDelete) {
+            const updatedCodes = codes.filter(code => code.name !== codeToDelete.name);
+            Cookies.set('codes', JSON.stringify(updatedCodes), { expires: 7 });
+            setCodes(updatedCodes);
+        }
+        setIsDeleteModalActive(false);
+        setCodeToDelete(null);
+    };
+
+    const cancelDelete = () => {
+        setIsDeleteModalActive(false);
+        setCodeToDelete(null);
+    };
+
+    const openSettingsModal = (code) => {
+        setCodeForSettings(code);
+        setIsSettingsModalActive(true);
+    };
+
+    const closeSettingsModal = () => {
+        setIsSettingsModalActive(false);
+        setCodeForSettings(null);
     };
 
     useEffect(() => {
@@ -54,62 +76,112 @@ const Web = () => {
         if (savedCodes) {
             setCodes(JSON.parse(savedCodes));
         }
-    }, []); 
-
+    }, []);
 
     return (
         <div>
             <Navbar/>
-            <div className="">
-     
-      <div className="input">
-        <div>
-          <input
-            type="text"
-            className="form-control"
-            id="codeName"
-            value={codeName}
-            onChange={(e) => setCodeName(e.target.value)} // Handle name input change
-            placeholder="fiók neve"
-          />
-        </div>
+            <div className="webapp">
+                <div className="input-fields">
+                    <div>
+                        <input
+                            type="text"
+                            value={codeName}
+                            onChange={(e) => setCodeName(e.target.value)}
+                            placeholder="fiók neve"
+                        />
+                    </div>
 
-        <div>
-          <input
-            type="text"
-            className="form-control"
-            id="secretKey"
-            value={secretKey}
-            onChange={(e) => setSecretKey(e.target.value)} // Handle secret key input change
-            placeholder="titkos kulcs"
-          />
-        </div>
-        <button className="main-button" onClick={saveSecretKeyToCookies}>Fiók Hozzáadása</button>
-      </div>
+                    <div>
+                        <input
+                            type="text"
+                            value={secretKey}
+                            onChange={(e) => setSecretKey(e.target.value)}
+                            placeholder="azonosító"
+                        />
+                    </div>
+                    <button className="btn btn-primary" onClick={saveSecretKeyToCookies}>
+                        Fiók Hozzáadása
+                    </button>
+                </div>
+                <div className="divider text-center" data-content="KÓDJAI"></div>
+                <div>
+                    {codes.length > 0 ? (
+                        <ul className="card-sect">
+                            {codes.map((code, index) => (
+                                <li key={index}>
+                                    <div className="card cardelem">
+                                        <h2>{code.otp}</h2>
+                                        <p className="text-small">{code.name}</p>
+                                        <div className="buttons">
+                                            <button
+                                                className="btn my"
+                                                onClick={() => openSettingsModal(code)}
+                                            >
+                                                Beállítások
+                                            </button>
+                                            <button
+                                                className="btn btn-error"
+                                                onClick={() => openDeleteModal(code)}
+                                            >
+                                                Törlés
+                                            </button>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <h3>Nincs mentett kód!</h3>
+                    )}
+                </div>
+            </div>
 
-      <div className='codes-section'>
-        <h2>Az Ön kódjai :</h2>
-        {codes.length > 0 ? (
-          <ul>
-            {codes.map((code, index) => (
-              <li key={index}>
-                <p className='code-text'>{code.name} : </p> 
-                <p className='code'>{code.otp}</p>
-                <button
-                  onClick={() => deleteCode(code.name)}
-                >
-                  Törlés
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <h3>Nincs mentett kód!</h3>
-        )}
-      </div>
-    </div>
-    </div>
+            {/* Delete Modal */}
+            {isDeleteModalActive && (
+                <div className="modal active">
+                    <a href="#close" className="modal-overlay" aria-label="Close" onClick={cancelDelete}></a>
+                    <div className="modal-container">
+                        <div className="modal-header">
+                            <a href="#close" className="btn btn-clear float-right" aria-label="Close" onClick={cancelDelete}></a>
+                            <div className="modal-title h5">Törlés megerősítése</div>
+                        </div>
+                        <div className="modal-body">
+                            <div className="content">
+                                Biztosan törölni szeretné a(z) "{codeToDelete?.name}" kódot?
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button className="btn btn-error my" onClick={confirmDelete}>Törlés</button>
+                            <button className="btn btn-secondary" onClick={cancelDelete}>Mégse</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Settings Modal */}
+            {isSettingsModalActive && (
+                <div className="modal active">
+                    <a href="#close" className="modal-overlay" aria-label="Close" onClick={closeSettingsModal}></a>
+                    <div className="modal-container">
+                        <div className="modal-header">
+                            <a href="#close" className="btn btn-clear float-right" aria-label="Close" onClick={closeSettingsModal}></a>
+                            <div className="modal-title h5">Fiók Beállításai</div>
+                        </div>
+                        <div className="modal-body">
+                            <div className="content">
+                                <p><strong>Fiók neve:</strong> {codeForSettings?.name}</p>
+                                <p><strong>Azonosító:</strong> {codeForSettings?.secretKey}</p>
+                            </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button className="btn btn-secondary" onClick={closeSettingsModal}>Bezárás</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
-};
+}
 
-export default Web;
+export default App;

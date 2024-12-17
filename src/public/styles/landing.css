@@ -13,6 +13,10 @@ h1 {
     text-align: center;
 }
 
+.landing-text {
+    font-size: 52px;
+}
+
 .buttons {
     display: flex;
     justify-content: space-between;

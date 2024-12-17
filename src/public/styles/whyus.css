@@ -1,0 +1,32 @@
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.mh1 {
+    padding-top: 1rem !important;
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+.img-1 {
+    height: auto;
+    min-height: 20rem;
+    max-height: 20rem;
+}
+
+.text {
+    flex: 1 1 calc(50%); /* Each item takes up roughly one-third of the row, minus the gap */
+    max-width: calc(50%);
+    border-radius: 0px;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+    outline: none;
+    background: #fff;
+    padding: 1.5rem;
+    width: auto;
+    min-width: 20rem;
+    max-width: 30rem;
+    font-size: 25px;
+}
