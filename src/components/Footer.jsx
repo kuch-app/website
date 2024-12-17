@@ -1,5 +1,4 @@
 import React from "react";
-import "../public/styles/navbar.css"
 
 const navigateToWeb = () => {
     window.location.href = '/web.html';

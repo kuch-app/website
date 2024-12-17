@@ -6,7 +6,7 @@ const navigateToWeb = () => {
 };
 
 const Navbar = () => (
-    <div className="navbar">
+    <div className="navbar bg-secondary">
         <div className="navbar-front">
         <a href="/">
             <h1>KUCH</h1>
@@ -15,8 +15,8 @@ const Navbar = () => (
         <div className="navbar-center">
         </div>
         <div className="navbar-end">
-            <button className="main-button" onClick={navigateToWeb}>Használat böngészőben</button>
-            <button>Alkalmazás letöltése</button>
+            <button className="btn btn-primary" onClick={navigateToWeb}>Használat böngészőben</button>
+            <button className="btn">Alkalmazás letöltése</button>
         </div>
     </div>
 );

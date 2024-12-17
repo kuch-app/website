@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { TOTP } from 'totp-generator';
 import Cookies from 'js-cookie';
 
-import "./public/styles/web.css"
 
 import Navbar from './components/Navbar';
 

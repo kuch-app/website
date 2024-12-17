@@ -1,9 +1,8 @@
 import React from "react";
-import "../public/styles/whyus.css"
 import illSvg from "../public/assets/pixeltrue-icons-security-1.svg";
 
 const WhyUs  = () => (
-    <div className="whyus-container">
+    <div className="whyus-container bg-secondary">
         <div className="front-section">
             <h1>Miért a Kuch?</h1>
             <div className="text">
