@@ -12,7 +12,7 @@ const Landing = () => (
         </h1>
         <div className="buttons">
             <button className="btn btn-primary btn-lg" onClick={navigateToWeb}>Használat böngészőben</button>
-            <button className="btn btn-lg">Alkalmazás letöltése</button>
+            <button className="btn btn-lg"><i class="icon icon-download"></i> Alkalmazás letöltése</button>
         </div>
         <img className="landing-img" src={illSvg} alt="Illustration" />
     </div>

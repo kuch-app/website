@@ -16,7 +16,7 @@ const Navbar = () => (
         </div>
         <div className="navbar-end">
             <button className="btn btn-primary" onClick={navigateToWeb}>Használat böngészőben</button>
-            <button className="btn">Alkalmazás letöltése</button>
+            <button className="btn">Alkalmazás letöltése </button>
         </div>
     </div>
 );

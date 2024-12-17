@@ -112,7 +112,7 @@ function App() {
                                 <li key={index}>
                                     <div className="card cardelem">
                                         <h2>{code.otp}</h2>
-                                        <p className="text-small">{code.name}</p>
+                                        <p className="text-small"><i class="icon icon-people"></i> {code.name}</p>
                                         <div className="buttons">
                                             <button
                                                 className="btn my"
@@ -123,8 +123,7 @@ function App() {
                                             <button
                                                 className="btn btn-error"
                                                 onClick={() => openDeleteModal(code)}
-                                            >
-                                                Törlés
+                                            ><i class="icon icon-delete"></i>
                                             </button>
                                         </div>
                                     </div>

@@ -28,7 +28,7 @@ input[type="text"] {
 .cardelem {
     padding: 1rem;
     padding-top: 0.5rem !important;
-    border-radius: 0px;
+    border-radius: 5px;
     box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
     outline: none;
 }

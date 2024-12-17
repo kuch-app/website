@@ -1,0 +1,46 @@
+a {
+    text-decoration: none !important;
+}
+
+.navbar-f {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.buttons {
+    display: flex;
+}
+
+.navbar-end-f {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 20rem;
+    height: 10rem;
+    gap: 0.5rem;
+}
+
+.navbar-center-f {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 20rem;
+    height: 10rem;
+    gap: 5px;
+}
+
+.navbar-f {
+    border-top: 2px solid #5755d9; /* 2px top border with a solid black line */
+}
+
+h1 {
+    margin: 0px;
+    padding: 0px;
+}
